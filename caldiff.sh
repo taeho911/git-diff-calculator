@@ -58,7 +58,7 @@ do
     fi
 done
 
-awk 'FNR==NR {arr[FNR]=FNR"__"$1; next} {print arr[FNR]"__"$3"__"$1"__"$2}' $namestatus $numstat > $combine
+awk 'FNR==NR {arr[FNR]=FNR"__"$1; next} {print arr[FNR]"__"$1"__"$2"__"$3}' $namestatus $numstat > $combine
 
 declare -a combine_arr
 declare -A report_arr
@@ -67,7 +67,7 @@ length_ca=${#combine_arr[*]}
 
 for (( i=0; i<$length_ca; i++ ))
 do
-    key=$(echo ${combine_arr[$i]} | awk -F__ '{print $3}')
+    key=$(echo ${combine_arr[$i]} | awk -F__ '{print $NF}')
     echo "key=$key, ${report_arr["$key"]}"
     if [ ! -z "${report_arr[$key]}" ]
     then
