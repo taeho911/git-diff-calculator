@@ -4,8 +4,11 @@ branch=$1
 [ -z $branch ] && branch="HEAD"
 report=report.txt
 [ -f $report ] && rm -f $report
-base_regex="master/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"
-base_tag=$(git tag -l $base_regex --no-contains $branch | sort -V | tail -1)
+base_regex="master/[0-9]{8}[^_]"
+base_tag=$(git log --pretty=format:"%d" $branch | grep -oE "tag: $base_regex" | sed -e 's/tag: //' -e 's/.$//' | sort -V | tail -1)
+# base_tag=$(git tag -l $base_regex --no-contains $branch | sort -V | tail -1)
+
+echo "base_tag=$base_tag"
 
 declare -a merge_commits
 declare -a branch_commits
