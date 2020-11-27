@@ -41,3 +41,5 @@ do
         echo "The End"
     fi
 done
+
+exit 0
