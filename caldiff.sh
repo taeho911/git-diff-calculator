@@ -1,6 +1,7 @@
 #!/bin/bash
 
 branch=$1
+[ -z $branch ] && branch="HEAD"
 report=report.txt
 [ -f $report ] && rm -f $report
 base_regex="master/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"
