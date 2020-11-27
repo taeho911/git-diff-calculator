@@ -25,7 +25,7 @@ do
     if [ $b_i -eq 0 ]
     then
         pre=$base_tag && continue
-    elif [ ${branch_commits[$b_i]} == ${merge_commits[$m_i]} ]
+    elif [ "${branch_commits[$b_i]}" == "${merge_commits[$m_i]}" ]
     then
         post=${branch_commits[$((b_i-1))]}
         echo "pre=$pre, post=$post"
